@@ -2,7 +2,7 @@
 $db_host = 'mysql.railway.internal';
 $db_user = 'root';
 $db_pass = 'VXAitkYFRCDBwbwSbYXLhnpOVhAuyhrG';
-$db_name = 'railway';
+$db_name = 'novaire_laundry';
 $db_port = '3306';
 
 try {
