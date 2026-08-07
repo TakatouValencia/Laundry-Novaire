@@ -2,6 +2,12 @@
 require 'includes/db.php';
 require 'includes/header.php';
 
+// Proteksi: Pelanggan tidak boleh akses halaman admin
+if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pelanggan') {
+    header('Location: client_dashboard.php');
+    exit;
+}
+
 // Update status
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
     $id = (int)$_POST['id'];

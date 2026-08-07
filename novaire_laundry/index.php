@@ -2,9 +2,13 @@
 session_start();
 require 'includes/db.php';
 
-// Kalau sudah login, langsung ke dashboard
+// Kalau sudah login, langsung ke dashboard sesuai role
 if (isset($_SESSION['user_id'])) {
-    header('Location: dashboard.php');
+    if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pelanggan') {
+        header('Location: client_dashboard.php');
+    } else {
+        header('Location: dashboard.php');
+    }
     exit;
 }
 
@@ -25,7 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id']   = $user['id'];
             $_SESSION['user_nama'] = $user['nama'];
             $_SESSION['user_role'] = $user['role'];
-            header('Location: dashboard.php');
+            
+            if ($user['role'] === 'pelanggan') {
+                header('Location: client_dashboard.php');
+            } else {
+                header('Location: dashboard.php');
+            }
             exit;
         } else {
             $error = 'Email atau password salah.';

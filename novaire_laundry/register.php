@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Email sudah terdaftar. Gunakan email lain.';
         } else {
             $hashed = password_hash($password, PASSWORD_BCRYPT);
-            $stmt = $pdo->prepare("INSERT INTO users (nama, email, password, role) VALUES (?, ?, ?, 'kasir')");
+            $stmt = $pdo->prepare("INSERT INTO users (nama, email, password, role) VALUES (?, ?, ?, 'pelanggan')");
             $stmt->execute([$nama, $email, $hashed]);
             $success = 'Registrasi berhasil! Silakan login.';
         }

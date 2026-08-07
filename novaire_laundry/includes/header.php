@@ -25,10 +25,14 @@ if (!isset($_SESSION['user_id']) && basename($_SERVER['PHP_SELF']) !== 'index.ph
             <span class="brand-gold">Novaire</span> Laundry
         </div>
         <nav class="sidebar-nav">
-            <a href="dashboard.php" class="<?= basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : '' ?>">Dashboard</a>
-            <a href="pesan_laundry.php" class="<?= basename($_SERVER['PHP_SELF']) == 'pesan_laundry.php' ? 'active' : '' ?>">Pesan Laundry</a>
-            <a href="data_laundry.php" class="<?= basename($_SERVER['PHP_SELF']) == 'data_laundry.php' ? 'active' : '' ?>">Data Laundry</a>
-            <a href="laporan.php" class="<?= basename($_SERVER['PHP_SELF']) == 'laporan.php' ? 'active' : '' ?>">Laporan</a>
+            <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pelanggan'): ?>
+                <a href="client_dashboard.php" class="<?= basename($_SERVER['PHP_SELF']) == 'client_dashboard.php' ? 'active' : '' ?>">Pesanan Saya</a>
+            <?php else: ?>
+                <a href="dashboard.php" class="<?= basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : '' ?>">Dashboard</a>
+                <a href="pesan_laundry.php" class="<?= basename($_SERVER['PHP_SELF']) == 'pesan_laundry.php' ? 'active' : '' ?>">Pesan Laundry</a>
+                <a href="data_laundry.php" class="<?= basename($_SERVER['PHP_SELF']) == 'data_laundry.php' ? 'active' : '' ?>">Data Laundry</a>
+                <a href="laporan.php" class="<?= basename($_SERVER['PHP_SELF']) == 'laporan.php' ? 'active' : '' ?>">Laporan</a>
+            <?php endif; ?>
         </nav>
         <div class="sidebar-footer">
             <div class="user-info">

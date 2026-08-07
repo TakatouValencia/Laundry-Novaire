@@ -2,6 +2,12 @@
 require 'includes/db.php';
 require 'includes/header.php';
 
+// Proteksi: Pelanggan tidak boleh akses halaman admin
+if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pelanggan') {
+    header('Location: client_dashboard.php');
+    exit;
+}
+
 $dari = $_GET['dari'] ?? date('Y-m-01');
 $sampai = $_GET['sampai'] ?? date('Y-m-d');
 

@@ -2,6 +2,12 @@
 require 'includes/db.php';
 require 'includes/header.php';
 
+// Proteksi: Pelanggan tidak boleh akses halaman admin
+if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'pelanggan') {
+    header('Location: client_dashboard.php');
+    exit;
+}
+
 // Statistik ringkas
 $totalPesanan = $pdo->query("SELECT COUNT(*) FROM pesanan")->fetchColumn();
 $totalProses  = $pdo->query("SELECT COUNT(*) FROM pesanan WHERE status = 'proses'")->fetchColumn();
